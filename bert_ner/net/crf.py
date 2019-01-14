@@ -94,8 +94,7 @@ class CRF(nn.Module):
             # features (time_steps, num_tag)
             # output_mask (batch_size, time_step)
             num_valid = torch.sum(output_mask[ix].detach())
-            features = torch.masked_select(features, output_mask[ix].expand_as(features.t()).permute(1,0).byte())
-            features = features.view(num_valid, num_tag)
+            features = features[output_mask[ix]==1]
             tag = tag[:num_valid]
             real_score = self.real_path_score(features, tag)
             total_score = self.all_possible_path_score(features)
@@ -145,9 +144,7 @@ class CRF(nn.Module):
         max_len = inputs.size(1)
         num_tag = inputs.size(2)
         for ix, features in enumerate(inputs):
-            num_valid = torch.sum(output_mask[ix].detach())
-            features = torch.masked_select(features, output_mask[ix].expand_as(features.t()).permute(1,0).byte())
-            features = features.view(num_valid,num_tag)
+            features = features[output_mask[ix]==1]
             best_path = self.get_best_path(features)
             best_path = torch.Tensor(best_path).long()
             best_path = padding(best_path, max_len)
