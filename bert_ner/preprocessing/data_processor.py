@@ -213,6 +213,10 @@ def convert_examples_to_features(examples, label_list, max_seq_length, tokenizer
     for ex_index, example in enumerate(examples):
         tokens_a = tokenizer.tokenize(example.text_a)
         labels = example.label.split()
+        
+        if len(tokens_a)==0 or len(labels)==0:
+            continue
+            
         if len(tokens_a) > max_seq_length - 2:
             tokens_a = tokens_a[:(max_seq_length-2)]
             labels = labels[:(max_seq_length-2)]
