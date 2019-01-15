@@ -253,8 +253,8 @@ def convert_examples_to_features(examples, label_list, max_seq_length, tokenizer
 
         # ----------------处理后结果-------------------------
         # for example, in the case of max_seq_length=10:
-        # raw_data:          春 秋 忽 代 谢ing
-        # token:       [CLS] 春 秋 忽 代 谢 ##ing [SEP]
+        # raw_data:          春 秋 忽 代 谢le
+        # token:       [CLS] 春 秋 忽 代 谢 ##le [SEP]
         # input_ids:     101 2  12 13 16 14 15   102   0 0 0
         # input_mask:      1 1  1  1  1  1   1     1   0 0 0
         # label_id:          T  T  O  O  O
