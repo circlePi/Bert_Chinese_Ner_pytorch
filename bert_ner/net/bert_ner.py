@@ -3,10 +3,10 @@ from net.crf import CRF
 import numpy as np
 from sklearn.metrics import f1_score, classification_report
 import config.args as args
-from pytorch_pretrained_bert.modeling import PreTrainedBertModel, BertModel
+from pytorch_pretrained_bert.modeling import BertPreTrainedModel, BertModel
 
 
-class Bert_CRF(PreTrainedBertModel):
+class Bert_CRF(BertPreTrainedModel):
     def __init__(self,
                  config,
                  num_tag):
